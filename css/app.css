@@ -16,7 +16,7 @@ body, html {
 /* Sección izquierda */
 .left-section {
   width: 45%;
-  background-color: #9BAC9A;
+  background-color: #8abc89;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -95,6 +95,18 @@ body, html {
 /* Botón */
 .btn-login {
   background-color: #3A1737;
+  color: #fff;
+  border: none;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 8px 0;
+  transition: background 0.3s ease;
+}
+
+/* Botón Google */
+.btn-google {
+  background-color: #457c47;
   color: #fff;
   border: none;
   width: 100%;
