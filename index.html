@@ -37,8 +37,13 @@
 
           <button type="submit" class="btn btn-login">Iniciar sesion</button>
 
-          <button type="submit" class="btn btn-google">Iniciar con google</button>
+          <button type="button" id="loginGoogle" class="btn btn-google">
+            <i class="bi bi-google"></i> Iniciar con Google
+          </button>
 
+          <button type="button" id="logoutGoogle" class="btn btn-secondary mt-2" style="display: none;">
+            Cerrar sesión
+          </button>
           <div class="text-center mt-2">
             <a href="#" class="forgot-link">Restablecer contraseña</a>
           </div>
@@ -46,5 +51,6 @@
       </div>
     </div>
   </div>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>
