@@ -3,7 +3,7 @@ body, html {
   height: 100%;
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background-color: #1e1e1e;
+  background-color: white;
 }
 
 /* Contenedor principal */
@@ -16,12 +16,12 @@ body, html {
 /* Sección izquierda */
 .left-section {
   width: 45%;
-  background-color: #8abc89;
+  background-color: #BEE5BF;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-top-right-radius: 80px;
-  border-bottom-right-radius: 80px;
+  /*border-top-right-radius: 80px;
+  border-bottom-right-radius: 80px;*/
   position: relative;
 }
 
@@ -29,7 +29,7 @@ body, html {
 .circle-bg {
   width: 420px;
   height: 420px;
-  background-color: #C3E5C1;
+  background-color: #eef1ee;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -46,6 +46,7 @@ body, html {
 /* Sección derecha */
 .right-section {
   width: 55%;
+  height: 100%;
   background-image: url('../images/fondo-colores.png');
   background-size: cover;
   background-position: center;
@@ -66,7 +67,7 @@ body, html {
 
 .icon-user {
   font-size: 70px;
-  color: #C3E5C1;
+  color: #ffffff;
   margin-bottom: 25px;
 }
 
