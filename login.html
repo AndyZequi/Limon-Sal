@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMÓN & SAL - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <div class="login-container">
+    <!-- Lado Izquierdo -->
+    <div class="left-section">
+      <div class="circle-bg">
+        <img src="./images/logo.png" alt="Logo Limon y Sal">
+      </div>
+    </div>
+
+    <!-- Lado Derecho -->
+    <div class="right-section">
+      <div class="login-box">
+        <div class="icon-user">
+          <i class="bi bi-person-circle"></i>
+        </div>
+
+        <form id="loginForm">
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" id="email" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" id="password" class="form-control" required>
+          </div>
+
+          <button type="submit" class="btn btn-login">Sign In</button>
+
+          <div class="text-center mt-2">
+            <a href="#" class="forgot-link">Forgot password?</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/login.js"></script>
+</body>
+</html>
+
