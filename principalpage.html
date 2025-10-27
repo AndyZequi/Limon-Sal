@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LIMÓN & SAL - Recetas</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/app.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="navbar-custom">
+    <div class="container-fluid">
+      <div class="navbar-content">
+        <!-- Menu hamburguesa -->
+        <button class="btn-menu">
+          <img src="./images/menu.png" alt="Menu" class="icon-img">
+        </button>
+
+        <!-- Logo -->
+        <div class="logo-container">
+          <img src="./images/logo.png" alt="LIMÓN & SAL" class="logo">
+        </div>
+
+        <!-- Barra de búsqueda -->
+        <div class="search-container">
+          <input type="text" class="search-input" placeholder="Busca una receta">
+          <img src="./images/busqueda-de-lupa.png" alt="Buscar" class="search-icon">
+        </div>
+
+        <!-- Botones de sesión -->
+        <div class="auth-buttons">
+          <button class="btn-auth btn-login">Inicia Sesión</button>
+          <button class="btn-auth btn-register">Registrate</button>
+        </div>
+
+        <!-- Icono de usuario -->
+        <div class="user-icon">
+          <img src="./images/usuario.png" alt="Usuario" class="icon-user-img">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section - Carrusel -->
+  <section class="hero-section">
+    <div class="carousel-container">
+      <button class="carousel-btn prev-btn">
+        <i class="bi bi-chevron-left"></i>
+      </button>
+      
+      <div class="carousel-images">
+        <img src="./images/hero-main.png" alt="Receta destacada" class="hero-image active">
+      </div>
+
+      <button class="carousel-btn next-btn">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </section>
+
+  <!-- Categorías de Recetas -->
+  <section class="categories-section">
+    <div class="container">
+      <div class="categories-grid">
+        <!-- Aves de caza -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/gallina.png" alt="Aves de caza">
+          </div>
+          <h3 class="category-title">Aves de caza</h3>
+        </div>
+
+        <!-- Carnes -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/bife.png" alt="Carnes">
+          </div>
+          <h3 class="category-title">Carnes</h3>
+        </div>
+
+        <!-- Sopas y cremas -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/sopa.png" alt="Sopas y cremas">
+          </div>
+          <h3 class="category-title">Sopas y cremas</h3>
+        </div>
+
+        <!-- Acompañamientos -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/verduras.png" alt="Acompañamientos">
+          </div>
+          <h3 class="category-title">Acompañamientos</h3>
+        </div>
+
+        <!-- Postres -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/postres.png" alt="Postres">
+          </div>
+          <h3 class="category-title">Postres</h3>
+        </div>
+
+        <!-- Bebidas y coctelería -->
+        <div class="category-card">
+          <div class="category-icon">
+            <img src="./images/bebidas.png" alt="Bebidas y coctelería">
+          </div>
+          <h3 class="category-title">Bebidas y coctelería</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="./js/app.js"></script>
+</body>
+</html>
