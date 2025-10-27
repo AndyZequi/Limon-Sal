@@ -8,7 +8,7 @@ import {
   GoogleAuthProvider, 
   signInWithPopup, 
   signOut, 
-  //onAuthStateChanged 
+  onAuthStateChanged 
 } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
 const firebaseConfig = {
@@ -29,17 +29,20 @@ const provider = new GoogleAuthProvider();
 const btnLogin = document.getElementById("loginGoogle");
 const btnLogout = document.getElementById("logoutGoogle");
 
-// incio de sesion
+// Iniciar sesión con Google
 btnLogin.addEventListener("click", async () => {
   try {
     const result = await signInWithPopup(auth, provider);
     const user = result.user;
     console.log("Usuario autenticado:", user.displayName);
+
+    // Redirigir a la página principal
+    window.location.href = "principalpage.html";
+
   } catch (error) {
     console.error("Error en el inicio de sesión:", error.message);
   }
 });
-
 // cerrar sesion (aun no termino de implementarlo)
 btnLogout.addEventListener("click", async () => {
   try {
