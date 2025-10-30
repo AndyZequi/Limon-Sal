@@ -28,6 +28,8 @@ const provider = new GoogleAuthProvider();
 // Referencias
 const btnLogin = document.getElementById("loginGoogle");
 const btnLogout = document.getElementById("logoutGoogle");
+const recipesContainer = document.getElementById("recipesContainer");
+
 
 // Iniciar sesión con Google
 btnLogin.addEventListener("click", async () => {
@@ -77,30 +79,64 @@ async function buscarRecetas(query) {
     mostrarRecetas(data);
 
   } catch (error) {
-    console.error("Error:", error.message);
+     console.error("Error:", error.message);
+    recipesContainer.innerHTML = `
+      <div class="col-12 text-center text-danger">
+        <p>Error al cargar las recetas. Intenta nuevamente.</p>
+      </div>
+    `;
   }
-  console.log("Recetas encontradas:", query);
 }
 
 function mostrarRecetas(recetas) {
-  const contenedor = document.getElementById("contenedorRecetas");
-  contenedor.innerHTML = "";
+  recipesContainer.innerHTML = ""; // Limpiar resultados previos
 
   if (recetas.length === 0) {
-    contenedor.innerHTML = "<p>No se encontraron recetas.</p>";
+    recipesContainer.innerHTML = `
+      <div class="col-12 text-center text-muted">
+        <p>No se encontraron recetas con ese término.</p>
+      </div>
+    `;
     return;
   }
 
   recetas.forEach((r) => {
     const card = document.createElement("div");
-    card.classList.add("receta-card");
+    card.classList.add("col-md-4", "col-sm-6");
 
     card.innerHTML = `
-      <h3>${r.title}</h3>
-      <p><strong>Ingredientes:</strong> ${r.ingredients}</p>
-      <p><strong>Instrucciones:</strong> ${r.instructions}</p>
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-success">${r.title}</h5>
+          <p class="card-text"><strong>Ingredientes:</strong> ${r.ingredients}</p>
+          <p class="card-text"><strong>Instrucciones:</strong> ${r.instructions}</p>
+        </div>
+      </div>
     `;
 
-    contenedor.appendChild(card);
+    recipesContainer.appendChild(card);
   });
 }
+
+// === Eventos para la búsqueda ===
+searchBtn.addEventListener("click", () => {
+  const query = searchInput.value.trim();
+  if (query) buscarRecetas(query);
+});
+
+searchInput.addEventListener("keypress", (e) => {
+  if (e.key === "Enter") {
+    const query = searchInput.value.trim();
+    if (query) buscarRecetas(query);
+  }
+});
+
+// === (Opcional) Verificar sesión del usuario ===
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    console.log("No hay usuario autenticado");
+    // window.location.href = "index.html"; // puedes redirigir si lo deseas
+  } else {
+    console.log("Usuario activo:", user.displayName);
+  }
+});
