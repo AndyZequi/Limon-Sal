@@ -52,3 +52,55 @@ btnLogout.addEventListener("click", async () => {
     console.error("Error al cerrar sesión:", error.message);
   }
 });
+
+//Cambios de autenticacion
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("Usuario activo:", user.displayName);
+    // Aquí podrías mostrar el contenido principal
+  } else {
+    console.log("No hay usuario autenticado.");
+    // Aquí podrías ocultar contenido o redirigir al login
+  }
+});
+
+//buscar recetas en HTML
+async function buscarRecetas(query) {
+  try {
+    const response = await fetch(`${API}?query=${query}`, {
+      headers: { "X-Api-Key": API_KEY },
+    });
+
+    if (!response.ok) throw new Error("Error al buscar recetas");
+
+    const data = await response.json();
+    mostrarRecetas(data);
+
+  } catch (error) {
+    console.error("Error:", error.message);
+  }
+  console.log("Recetas encontradas:", query);
+}
+
+function mostrarRecetas(recetas) {
+  const contenedor = document.getElementById("contenedorRecetas");
+  contenedor.innerHTML = "";
+
+  if (recetas.length === 0) {
+    contenedor.innerHTML = "<p>No se encontraron recetas.</p>";
+    return;
+  }
+
+  recetas.forEach((r) => {
+    const card = document.createElement("div");
+    card.classList.add("receta-card");
+
+    card.innerHTML = `
+      <h3>${r.title}</h3>
+      <p><strong>Ingredientes:</strong> ${r.ingredients}</p>
+      <p><strong>Instrucciones:</strong> ${r.instructions}</p>
+    `;
+
+    contenedor.appendChild(card);
+  });
+}
