@@ -21,51 +21,128 @@ const firebaseConfig = {
 };
 
 // Inicializar Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const provider = new GoogleAuthProvider();
+let app, auth, provider;
 
-// Referencias
-const btnLogin = document.getElementById("loginGoogle");
-const btnLogout = document.getElementById("logoutGoogle");
-const recipesContainer = document.getElementById("recipesContainer");
-const buscarRecetas = document.getElementById("buscarRecetas");
-const searchBtn = document.getElementById("searchBtn");
+try {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  provider = new GoogleAuthProvider();
+  
+  // Configurar el provider de Google
+  provider.setCustomParameters({
+    prompt: 'select_account'
+  });
+  
+  console.log("Firebase inicializado correctamente");
+  console.log("Auth configurado:", auth.app.name);
+} catch (error) {
+  console.error("Error al inicializar Firebase:", error);
+  alert("Error al inicializar Firebase. Por favor, recarga la página.");
+}
 
-
-
-// Iniciar sesión con Google
-btnLogin.addEventListener("click", async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-    console.log("Usuario autenticado:", user.displayName);
-
-    // Redirigir a la página principal
-    window.location.href = "home.html";
-
-  } catch (error) {
-    console.error("Error en el inicio de sesión:", error.message);
-  }
-});
-// cerrar sesion (aun no termino de implementarlo)
-btnLogout.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-    console.log("Sesión cerrada");
-  } catch (error) {
-    console.error("Error al cerrar sesión:", error.message);
-  }
-});
-
-//Cambios de autenticacion
-onAuthStateChanged(auth, (user) => {
+// Cambios de autenticación - puede ejecutarse en cualquier momento
+if (auth) {
+  onAuthStateChanged(auth, (user) => {
+  const btnLogout = document.getElementById("logoutGoogle");
+  
   if (user) {
     console.log("Usuario activo:", user.displayName);
-    // Aquí podrías mostrar el contenido principal
+    // Mostrar botón de cerrar sesión si existe
+    if (btnLogout) {
+      btnLogout.style.display = "block";
+    }
+    // Si estamos en index.html y hay usuario autenticado, podemos redirigir
+    if (window.location.pathname.includes("index.html") || window.location.pathname === "/" || window.location.pathname.endsWith("/")) {
+      // Opcional: redirigir automáticamente si ya está autenticado
+      // window.location.href = "user.html";
+    }
   } else {
     console.log("No hay usuario autenticado.");
-    // Aquí podrías ocultar contenido o redirigir al login
+    // Ocultar botón de cerrar sesión si existe
+    if (btnLogout) {
+      btnLogout.style.display = "none";
+    }
+  }
+  });
+}
+
+// Esperar a que el DOM esté completamente cargado
+document.addEventListener("DOMContentLoaded", () => {
+  // Referencias - verificar que existan antes de usar
+  const btnLogin = document.getElementById("loginGoogle");
+  const btnLogout = document.getElementById("logoutGoogle");
+  const recipesContainer = document.getElementById("recipesContainer");
+  const buscarRecetas = document.getElementById("buscarRecetas");
+  const searchBtn = document.getElementById("searchBtn");
+  const searchInput = document.getElementById("buscarRecetas");
+
+  // Verificar que Firebase esté inicializado
+  if (!auth || !provider) {
+    console.error("Firebase no está inicializado correctamente");
+    if (btnLogin) {
+      btnLogin.disabled = true;
+      btnLogin.textContent = "Error: Firebase no inicializado";
+    }
+    return;
+  }
+
+  // Iniciar sesión con Google
+  if (btnLogin) {
+    console.log("Botón de login encontrado, configurando evento...");
+    btnLogin.addEventListener("click", async (e) => {
+      e.preventDefault();
+      if (!auth || !provider) {
+        alert("Error: Firebase no está inicializado. Por favor, recarga la página.");
+        return;
+      }
+      try {
+        console.log("Intentando iniciar sesión con Google...");
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        console.log("Usuario autenticado:", user.displayName);
+        console.log("Email:", user.email);
+
+        // Redirigir a la página principal
+        window.location.href = "home.html";
+
+      } catch (error) {
+        console.error("Error en el inicio de sesión:", error);
+        console.error("Código de error:", error.code);
+        console.error("Mensaje de error:", error.message);
+        
+        let errorMessage = "Error al iniciar sesión con Google.";
+        if (error.code === "auth/popup-closed-by-user") {
+          errorMessage = "Cerraste la ventana de autenticación. Intenta de nuevo.";
+        } else if (error.code === "auth/popup-blocked") {
+          errorMessage = "El navegador bloqueó la ventana emergente. Por favor, permite ventanas emergentes para este sitio.";
+        } else if (error.code === "auth/network-request-failed") {
+          errorMessage = "Error de red. Verifica tu conexión a internet.";
+        } else if (error.message) {
+          errorMessage = error.message;
+        }
+        
+        alert(errorMessage);
+      }
+    });
+  } else {
+    console.warn("El botón loginGoogle no se encontró en el DOM");
+  }
+
+  // Cerrar sesión
+  if (btnLogout && auth) {
+    btnLogout.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        console.log("Sesión cerrada");
+        // Redirigir al login si estamos en otra página
+        if (window.location.pathname !== "/index.html" && !window.location.pathname.includes("index.html")) {
+          window.location.href = "index.html";
+        }
+      } catch (error) {
+        console.error("Error al cerrar sesión:", error.message);
+        alert("Error al cerrar sesión: " + error.message);
+      }
+    });
   }
 });
 
@@ -92,6 +169,8 @@ async function buscarRecetas(query) {
 }
 
 function mostrarRecetas(recetas) {
+  if (!recipesContainer) return; // Si no existe el contenedor, salir
+  
   recipesContainer.innerHTML = ""; // Limpiar resultados previos
 
   if (recetas.length === 0) {
@@ -122,14 +201,21 @@ function mostrarRecetas(recetas) {
 }
 
 // === Eventos para la búsqueda ===
-searchBtn.addEventListener("click", () => {
-  const query = searchInput.value.trim();
-  if (query) buscarRecetas(query);
-});
-
-searchInput.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
+if (searchBtn && searchInput) {
+  searchBtn.addEventListener("click", () => {
     const query = searchInput.value.trim();
     if (query) buscarRecetas(query);
-  }
-});
+  });
+
+  searchInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+      const query = searchInput.value.trim();
+      if (query) buscarRecetas(query);
+    }
+  });
+}
+
+// Función buscarRecetas solo si existe el contenedor
+if (recipesContainer) {
+  // La función buscarRecetas ya está definida arriba
+}
