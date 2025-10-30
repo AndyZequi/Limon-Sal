@@ -130,13 +130,3 @@ searchInput.addEventListener("keypress", (e) => {
     if (query) buscarRecetas(query);
   }
 });
-
-// === (Opcional) Verificar sesión del usuario ===
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    console.log("No hay usuario autenticado");
-    // window.location.href = "index.html"; // puedes redirigir si lo deseas
-  } else {
-    console.log("Usuario activo:", user.displayName);
-  }
-});
