@@ -29,6 +29,9 @@ const provider = new GoogleAuthProvider();
 const btnLogin = document.getElementById("loginGoogle");
 const btnLogout = document.getElementById("logoutGoogle");
 const recipesContainer = document.getElementById("recipesContainer");
+const buscarRecetas = document.getElementById("buscarRecetas");
+const searchBtn = document.getElementById("searchBtn");
+
 
 
 // Iniciar sesión con Google
