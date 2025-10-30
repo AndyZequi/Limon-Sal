@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limon & Sal - Usuario</title>
+    <link rel="stylesheet" href="css/user.css">
+</head>
+<body>
+    <header class="topbar">
+        <button class="menu-btn" aria-label="Abrir menú">
+            <span></span><span></span><span></span>
+        </button>
+        <a class="brand" href="index.html">
+            <img src="images/logo.png" alt="Limon & Sal">
+        </a>
+        <form class="search" role="search">
+            <input type="search" placeholder="Busca una receta" aria-label="Buscar">
+        </form>
+        <nav class="actions">
+            <a class="btn btn-small" href="principalpage.html">Inicia Sesión</a>
+            <a class="btn btn-secondary btn-small" href="#">Regístrate</a>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="profile">
+            <div class="avatar">
+                <img src="images/usuario.png" alt="Avatar de usuario">
+            </div>
+            <div class="credentials">
+                <label>Usuario:</label>
+                <input type="text" placeholder="Tu usuario">
+                <label>Contraseña:</label>
+                <input type="password" placeholder="Tu contraseña">
+            </div>
+        </section>
+
+        <section class="saved">
+            <h2>Guardados</h2>
+            <div class="cards">
+                <article class="card">
+                    <img src="images/bife.png" alt="Receta guardada 1">
+                    <p>lorem ipsum</p>
+                </article>
+                <article class="card">
+                    <img src="images/sopa.png" alt="Receta guardada 2">
+                    <p>lorem ipsum</p>
+                </article>
+                <article class="card">
+                    <img src="images/postres.png" alt="Receta guardada 3">
+                    <p>lorem ipsum</p>
+                </article>
+                <article class="card">
+                    <img src="images/bebidas.png" alt="Receta guardada 4">
+                    <p>lorem ipsum</p>
+                </article>
+            </div>
+        </section>
+
+        <div class="logout">
+            <a class="btn btn-primary" href="index.html">Cerrar Sesión</a>
+        </div>
+    </main>
+</body>
+</html>
