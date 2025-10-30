@@ -37,7 +37,7 @@ btnLogin.addEventListener("click", async () => {
     console.log("Usuario autenticado:", user.displayName);
 
     // Redirigir a la página principal
-    window.location.href = "principalpage.html";
+    window.location.href = "home.html";
 
   } catch (error) {
     console.error("Error en el inicio de sesión:", error.message);
