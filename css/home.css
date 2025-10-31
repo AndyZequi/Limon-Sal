@@ -73,7 +73,7 @@ body {
   position: relative;
 }
 
-.search-input {
+.buscar-receta {
   width: 100%;
   padding: 10px 40px 10px 15px;
   border: none;
@@ -83,11 +83,11 @@ body {
   color: #fff;
 }
 
-.search-input::placeholder {
+.buscar-receta::placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-.search-input:focus {
+.buscar-receta:focus {
   outline: none;
   background-color: #5a3d5c;
   color: #fff;
