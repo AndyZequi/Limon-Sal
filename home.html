@@ -122,10 +122,19 @@
       <div class="hero-overlay">
         <h1 class="hero-title">Descubre el Sabor Auténtico</h1>
         <p class="hero-subtitle">Recetas caseras que conquistan paladares</p>
-        <button class="hero-cta" onclick="document.getElementById('buscarRecetas').focus()">Explorar Recetas</button>
+        <button id="explorarRecetas" class="hero-cta">Explorar Recetas</button>
       </div>
     </div>
   </section>
+
+  <section id="recetaAleatoria" class="receta-aleatoria" style="display:none;">
+  <div class="receta-card">
+    <h2 id="recetaTitulo"></h2>
+    <p id="recetaIngredientes"></p>
+    <p id="recetaInstrucciones"></p>
+  </div>
+</section>
+
 
   <!-- Categorías de Recetas -->
   <section class="categories-section">
@@ -137,7 +146,7 @@
       
       <div class="categories-grid">
         <!-- Categorías aquí (igual que antes) -->
-        <div class="category-card">
+        <div class="category-card" data-category="chicken">
           <div class="category-icon">
             <img src="./images/gallina.png" alt="Aves">
           </div>
@@ -145,7 +154,7 @@
           <p class="category-description">Deliciosas recetas con pollo, pavo y más</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" data-category="beef">
           <div class="category-icon">
             <img src="./images/bife.png" alt="Carnes Rojas">
           </div>
@@ -153,15 +162,15 @@
           <p class="category-description">Cortes premium y guisos tradicionales</p>
         </div>
 
-        <div class="category-card">
-          <div class="category-icon">
+        <div class="category-card" data-category="fish">         
+           <div class="category-icon">
             <img src="./images/pescado.png" alt="Pescados y Mariscos">
           </div>
           <h3 class="category-title">Pescados y Mariscos</h3>
           <p class="category-description">Frescos sabores del mar</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" data-category="soup">
           <div class="category-icon">
             <img src="./images/sopa.png" alt="Sopas y Cremas">
           </div>
@@ -169,7 +178,7 @@
           <p class="category-description">Confort en cada cucharada</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" data-category="salad">
           <div class="category-icon">
             <img src="./images/ensalada.png" alt="Ensaladas">
           </div>
@@ -177,7 +186,7 @@
           <p class="category-description">Frescura y nutrición combinadas</p>
         </div>
 
-        <div class="category-card">
+         <div class="category-card" data-category="side dish">
           <div class="category-icon">
             <img src="./images/verduras.png" alt="Acompañamientos">
           </div>
@@ -185,7 +194,7 @@
           <p class="category-description">Guarniciones que complementan</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" data-category="dessert">
           <div class="category-icon">
             <img src="./images/postres.png" alt="Postres">
           </div>
@@ -193,16 +202,26 @@
           <p class="category-description">Dulces momentos para compartir</p>
         </div>
 
-        <div class="category-card">
+        <div class="category-card" data-category="cocktail">
           <div class="category-icon">
             <img src="./images/bebidas.png" alt="Bebidas y Coctelería">
           </div>
           <h3 class="category-title">Bebidas y Coctelería</h3>
           <p class="category-description">Para refrescar cualquier momento</p>
+
         </div>
       </div>
     </div>
   </section>
+  
+<!-- Sección donde se mostrarán las recetas de una categoría -->
+<section id="categoriaRecetas" style="display: none; padding: 2rem;">
+  <h2 id="categoriaTitulo">Recetas</h2>
+  <div id="categoriaLista" class="recetas-container" 
+       style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1rem;">
+  </div>
+</section>
+
 
   <!-- Sección Destacados -->
   <section class="featured-section">

@@ -2,6 +2,7 @@
 const API = "https://api.api-ninjas.com/v1/recipe";
 const API_KEY = "H3C3LxDAjAjzPO5h+AQ1aw==ElDXRgZHc1kB9Vxt";
 
+
 // ===== FIREBASE =====
 
 // Variables globales
@@ -41,6 +42,122 @@ function initializeFirebase() {
     return false;
   }
 }
+
+//FUNCIONALIDAD DE RECETA ALEATORIA EN HOME 
+document.addEventListener("DOMContentLoaded", () => {
+  const explorarBtn = document.getElementById("explorarRecetas");
+  const recetaSection = document.getElementById("recetaAleatoria");
+
+  explorarBtn.addEventListener("click", async () => {
+    try {
+      // Palabras aleatorias base
+      const keywords = ["chicken", "pasta", "salad", "cake", "fish", "soup", "beef", "tacos", "burger", "pizza", "sushi"];
+      const randomQuery = keywords[Math.floor(Math.random() * keywords.length)];
+
+      // Petición a la API
+      const response = await fetch(`${API}?query=${randomQuery}`, {
+        headers: { "X-Api-Key": API_KEY },
+      });
+
+      const data = await response.json();
+
+      if (!data || data.length === 0) {
+        alert("No se encontró ninguna receta, intenta de nuevo.");
+        return;
+      }
+
+      // Selecciona una receta aleatoria
+      const randomRecipe = data[Math.floor(Math.random() * data.length)];
+
+      // Inserta la receta en el DOM
+      document.getElementById("recetaTitulo").textContent = randomRecipe.title;
+      document.getElementById("recetaIngredientes").innerHTML = `<strong>Ingredientes:</strong> ${randomRecipe.ingredients}`;
+      document.getElementById("recetaInstrucciones").innerHTML = `<strong>Instrucciones:</strong> ${randomRecipe.instructions}`;
+  
+      recetaSection.style.display = "block";
+      recetaSection.scrollIntoView({ behavior: "smooth" });
+
+    } catch (error) {
+      console.error("Error al obtener receta:", error);
+      alert("Ocurrió un error al buscar una receta aleatoria.");
+    }
+  });
+});
+
+// ===== FUNCIONALIDAD: MOSTRAR RECETAS POR CATEGORÍA =====
+document.addEventListener("DOMContentLoaded", () => {
+  const categorias = document.querySelectorAll(".category-card");
+  const categoriaSection = document.getElementById("categoriaRecetas");
+  const categoriaTitulo = document.getElementById("categoriaTitulo");
+  const categoriaLista = document.getElementById("categoriaLista");
+
+  categorias.forEach(card => {
+    card.addEventListener("click", async () => {
+      
+      const categoriaNombre = card.querySelector(".category-title")?.textContent.trim();
+
+      const categoriasMap = {
+        "Aves": "chicken",
+        "Carnes Rojas": "beef",
+        "Pescados y Mariscos": "fish",
+        "Sopas y Cremas": "soup",
+        "Ensaladas": "salad",
+        "Acompañamientos": "side dish",
+        "Postres": "cake",
+        "Bebidas y Coctelería": "drink"
+      };
+
+      const categoriaQuery = categoriasMap[categoriaNombre] || categoriaNombre;
+      console.log(`🔍 Buscando recetas para: ${categoriaNombre} → ${categoriaQuery}`);
+
+      try {
+        const response = await fetch(`${API}?query=${categoriaQuery}`, {
+          headers: { "X-Api-Key": API_KEY },
+        });
+
+        const data = await response.json();
+
+        if (!data || data.length === 0) {
+          categoriaLista.innerHTML = `
+            <p style="grid-column: 1 / -1; text-align: center; color: #777;">
+              No se encontraron recetas para <strong>${categoriaNombre}</strong>.
+            </p>`;
+          categoriaSection.style.display = "block";
+          categoriaSection.scrollIntoView({ behavior: "smooth" });
+          return;
+        }
+
+        categoriaTitulo.textContent = `Recetas de ${categoriaNombre}`;
+        categoriaLista.innerHTML = "";
+        categoriaSection.style.display = "block";
+        categoriaSection.scrollIntoView({ behavior: "smooth" });
+
+        data.slice(0, 6).forEach(receta => {
+          const card = document.createElement("div");
+          card.classList.add("receta-card");
+          card.style.border = "1px solid #ddd";
+          card.style.borderRadius = "10px";
+          card.style.padding = "1rem";
+          card.style.backgroundColor = "#fff";
+          card.style.boxShadow = "0 2px 5px rgba(0,0,0,0.1)";
+          card.style.marginBottom = "1rem";
+
+          card.innerHTML = `
+            <h3>${receta.title}</h3>
+            <p><strong>Ingredientes:</strong> ${receta.ingredients}</p>
+            <p><strong>Instrucciones:</strong> ${receta.instructions}</p>
+          `;
+          categoriaLista.appendChild(card);
+        });
+
+      } catch (error) {
+        console.error("Error al obtener recetas:", error);
+        alert("Hubo un error al cargar las recetas de la categoría.");
+      }
+    });
+  });
+});
+
 
 // ===== FUNCIONES DEL MENÚ LATERAL =====
 function initializeMenu() {
@@ -621,6 +738,7 @@ function initializeCarousel() {
   // Auto-avance cada 5 segundos
   setInterval(() => showSlide(currentSlide + 1), 5000);
 }
+
 
 // Inicializar carrusel si existe
 document.addEventListener('DOMContentLoaded', initializeCarousel);
