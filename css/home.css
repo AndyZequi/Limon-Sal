@@ -1263,6 +1263,18 @@ body {
   }
 }
 
+.receta-card h3 {
+  color: #542a5a;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.receta-card p {
+  font-size: 0.9rem;
+  color: #444;
+}
+
+
 /* ===== ANIMACIONES ===== */
 @keyframes fadeInUp {
   from {
