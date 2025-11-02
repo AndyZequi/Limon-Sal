@@ -122,10 +122,19 @@
       <div class="hero-overlay">
         <h1 class="hero-title">Descubre el Sabor Auténtico</h1>
         <p class="hero-subtitle">Recetas caseras que conquistan paladares</p>
-        <button class="hero-cta" onclick="document.getElementById('buscarRecetas').focus()">Explorar Recetas</button>
+        <button id="explorarRecetas" class="hero-cta">Explorar Recetas</button>
       </div>
     </div>
   </section>
+
+  <section id="recetaAleatoria" class="receta-aleatoria" style="display:none;">
+  <div class="receta-card">
+    <h2 id="recetaTitulo"></h2>
+    <p id="recetaIngredientes"></p>
+    <p id="recetaInstrucciones"></p>
+  </div>
+</section>
+
 
   <!-- Categorías de Recetas -->
   <section class="categories-section">
