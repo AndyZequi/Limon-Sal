@@ -5,6 +5,48 @@
   box-sizing: border-box;
 }
 
+/* Recetas alatorias */
+.receta-aleatoria {
+  margin: 3rem auto;
+  max-width: 700px;
+  background: #ffffff; 
+  border-radius: 12px; 
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.08);
+  border: 1px solid #f0f0f0;
+  padding: 2.5rem; 
+  text-align: left;
+  animation: fadeIn 0.6s cubic-bezier(0.25, 0.8, 0.25, 1); 
+  transition: transform 0.3s ease, box-shadow 0.3s ease; 
+  overflow: hidden; 
+}
+
+.receta-aleatoria:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(44, 62, 80, 0.12);
+}
+
+.receta-aleatoria h2 {
+  color: #2c3e50; 
+  margin-bottom: 1rem;
+  font-weight: 600; 
+  letter-spacing: 0.5px; 
+}
+
+.receta-aleatoria p {
+  color: #34495e; 
+  line-height: 1.7; 
+  margin-bottom: 1.25rem; 
+}
+
+.receta-card {
+  background: #ffffff; 
+  border-radius: 12px; 
+  box-shadow: 0 6px 24px rgba(44, 62, 80, 0.08);
+  border: 1px solid #f0f0f0;
+  padding: 2.5rem; 
+  text-align: left;
+}
+
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f5f5f5;
