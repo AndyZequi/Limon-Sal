@@ -461,7 +461,7 @@ function initializeUserPage() {
   }
 }
 
-// ===== MOSTRAR RECETAS GUARDADAS (SIN IMÁGENES) =====
+// ===== recetas en perfil (modificado YA NO LE MUEVAAAN)=====
 function mostrarRecetasGuardadas() {
   const savedRecipesContainer = document.getElementById('savedRecipesContainer');
   
@@ -519,7 +519,6 @@ function mostrarRecetasGuardadas() {
     });
   });
 }
-
 
 // ===== FUNCIONES UTILITARIAS =====
 function escapeHTML(text) {
