@@ -322,6 +322,15 @@ function mostrarSinResultados() {
   if (noResults) noResults.style.display = "block";
 }
 
+// ===== FUNCIONES PRINCIPALES =====
+function mostrarSinResultados() {
+  const recipesContainer = document.getElementById("recipesContainer");
+  const noResults = document.getElementById("noResults");
+  
+  if (recipesContainer) recipesContainer.innerHTML = "";
+  if (noResults) noResults.style.display = "block";
+}
+
 function mostrarRecetas(recetas) {
   const recipesContainer = document.getElementById("recipesContainer");
   const noResults = document.getElementById("noResults");
@@ -452,26 +461,7 @@ function initializeUserPage() {
   }
 }
 
-function obtenerImagenPorCategoria(titulo, ingredientes) {
-  const texto = (titulo + ' ' + ingredientes).toLowerCase();
-  
-  if (texto.includes('gallina') || texto.includes('pollo') || texto.includes('ave')) {
-    return 'images/gallina.png';
-  } else if (texto.includes('carne') || texto.includes('bife') || texto.includes('res')) {
-    return 'images/bife.png';
-  } else if (texto.includes('sopa') || texto.includes('crema') || texto.includes('caldo')) {
-    return 'images/sopa.png';
-  } else if (texto.includes('verdura') || texto.includes('ensalada') || texto.includes('vegetal')) {
-    return 'images/verduras.png';
-  } else if (texto.includes('postre') || texto.includes('dulce') || texto.includes('torta') || texto.includes('tarta')) {
-    return 'images/postres.png';
-  } else if (texto.includes('bebida') || texto.includes('jugo') || texto.includes('coctel') || texto.includes('cocktail')) {
-    return 'images/bebidas.png';
-  } else {
-    return 'images/bife.png';
-  }
-}
-
+// ===== MOSTRAR RECETAS GUARDADAS (SIN IMÁGENES) =====
 function mostrarRecetasGuardadas() {
   const savedRecipesContainer = document.getElementById('savedRecipesContainer');
   
@@ -499,13 +489,11 @@ function mostrarRecetasGuardadas() {
     const card = document.createElement('div');
     card.classList.add('saved-card');
     
-    const imagenSrc = obtenerImagenPorCategoria(receta.title, receta.ingredients);
     const tituloEscapado = escapeHTML(receta.title);
     const ingredientesEscapados = escapeHTML(receta.ingredients);
     const tituloData = escapeHTML(receta.title);
     
     card.innerHTML = `
-      <img src="${imagenSrc}" alt="${tituloEscapado}" onerror="this.src='images/bife.png'">
       <div class="card-content">
         <h4>${tituloEscapado}</h4>
         <p class="ingredientes-preview">${ingredientesEscapados.substring(0, 100)}${ingredientesEscapados.length > 100 ? '...' : ''}</p>
@@ -531,6 +519,7 @@ function mostrarRecetasGuardadas() {
     });
   });
 }
+
 
 // ===== FUNCIONES UTILITARIAS =====
 function escapeHTML(text) {
