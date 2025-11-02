@@ -43,6 +43,47 @@ function initializeFirebase() {
   }
 }
 
+//FUNCIONALIDAD DE RECETA ALEATORIA EN HOME 
+document.addEventListener("DOMContentLoaded", () => {
+  const explorarBtn = document.getElementById("explorarRecetas");
+  const recetaSection = document.getElementById("recetaAleatoria");
+
+  explorarBtn.addEventListener("click", async () => {
+    try {
+      // Palabras aleatorias base
+      const keywords = ["chicken", "pasta", "salad", "cake", "fish", "soup", "beef", "tacos", "burger", "pizza", "sushi"];
+      const randomQuery = keywords[Math.floor(Math.random() * keywords.length)];
+
+      // Petición a la API
+      const response = await fetch(`${API}?query=${randomQuery}`, {
+        headers: { "X-Api-Key": API_KEY },
+      });
+
+      const data = await response.json();
+
+      if (!data || data.length === 0) {
+        alert("No se encontró ninguna receta, intenta de nuevo.");
+        return;
+      }
+
+      // Selecciona una receta aleatoria
+      const randomRecipe = data[Math.floor(Math.random() * data.length)];
+
+      // Inserta la receta en el DOM
+      document.getElementById("recetaTitulo").textContent = randomRecipe.title;
+      document.getElementById("recetaIngredientes").innerHTML = `<strong>Ingredientes:</strong> ${randomRecipe.ingredients}`;
+      document.getElementById("recetaInstrucciones").innerHTML = `<strong>Instrucciones:</strong> ${randomRecipe.instructions}`;
+  
+      recetaSection.style.display = "block";
+      recetaSection.scrollIntoView({ behavior: "smooth" });
+
+    } catch (error) {
+      console.error("Error al obtener receta:", error);
+      alert("Ocurrió un error al buscar una receta aleatoria.");
+    }
+  });
+});
+
 // ===== FUNCIONES DEL MENÚ LATERAL =====
 function initializeMenu() {
   const menuBtn = document.getElementById('menuBtn');
