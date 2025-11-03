@@ -280,21 +280,13 @@ function initializeAuth() {
 
   // Estado de autenticación
   auth.onAuthStateChanged((user) => {
-    if (user) {
-      console.log("✅ Usuario autenticado:", user.displayName);
-      if (btnLogout) btnLogout.style.display = "block";
-      
-      // Si estamos en login y hay usuario, redirigir a home
-      if (window.location.pathname.includes('index.html')) {
-        setTimeout(() => {
-          window.location.href = "home.html";
-        }, 1000);
-      }
-    } else {
-      console.log("🔒 No hay usuario autenticado");
-      if (btnLogout) btnLogout.style.display = "none";
-    }
-  });
+  if (!user) {
+    console.warn("⛔ Acceso denegado: no hay usuario logeado");
+    window.location.href = "index.html"; // Redirige al login
+  } else {
+    console.log("✅ Usuario autenticado, acceso permitido:", user.displayName);
+  }
+});
 
   // Iniciar sesión con Google
   if (btnLogin) {
