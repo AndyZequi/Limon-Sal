@@ -1,0 +1,467 @@
+:root {
+    --mint: #d7f0df;
+    --mint-strong: #c6e7d1;
+    --plum: #55263e;
+    --plum-2: #6b2f4f;
+    --card: #e8f6eb;
+    --text: #2d2d2d;
+    --white: #ffffff;
+}   
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    color: var(--text);
+    background: var(--white);
+}
+/* ===== HEADER UNIFICADO ===== */
+.navbar-custom {
+  background-color: #BEE5BF;
+  padding: 10px 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  gap: 15px;
+}
+
+/* Botón de menú hamburguesa */
+.btn-menu {
+  background: #6b4e6d;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: white;
+  font-size: 1.5rem;
+  width: 50px;
+  height: 50px;
+  box-shadow: 0 2px 8px rgba(107, 78, 109, 0.3);
+}
+
+.btn-menu:hover {
+  background: #4a2c4a;
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(107, 78, 109, 0.4);
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  background-color: #C3E5C1;
+  border-radius: 50%;
+  padding: 15px;
+  width: 100px;
+  height: 100px;
+  justify-content: center;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 10;
+  margin: -10px 0;
+  transition: transform 0.3s ease;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-container a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+
+.avatar-container {
+    display: grid;
+    justify-items: center;
+    gap: 12px;
+}
+
+.avatar {
+    width: 160px;
+    height: 160px;
+    padding: 8px;
+    border-radius: 50%;
+    background: var(--mint);
+    border: 6px solid var(--plum);
+    display: grid;
+    place-items: center;
+}
+
+.avatar img {
+    width: 90%;
+    height: 90%;
+    object-fit: contain;
+    filter: saturate(0.8);
+}
+
+.section-title-user {
+    font-size: 24px;
+    color: var(--plum);
+    margin: 0;
+}   
+/* Formulario de perfil */
+.profile-section {
+    width: min(520px, 100%);
+    display: grid;
+    gap: 16px;
+    margin: 0 auto; 
+}
+
+.profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.profile-form label {
+    font-weight: 700;
+    color: var(--plum);
+}
+
+.profile-form input {
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 2px solid var(--mint-strong);
+    background: #f6fffa;
+}
+
+/* Icono de usuario */
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+  border: none;
+  background: none;
+  transition: transform 0.3s ease;
+}
+
+.user-icon:hover {
+  transform: scale(1.1);
+}
+
+.icon-user-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  border: 2px solid #6b4e6d;
+}
+
+/* Sección de recetas guardadas */
+.saved-section {
+    margin-top: 40px;
+
+}
+
+.saved-section .section-title-user {
+    font-size: 22px;
+    color: var(--plum);
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.saved-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.saved-cards .card {
+    background: var(--card);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.saved-cards .card img {
+    width: 100%;
+    max-height: 80px;
+    object-fit: cover;
+}
+
+
+.saved-cards .card-content h4 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--plum);
+    line-height: 1.3;
+}
+
+.saved-cards .card-content .ingredientes-preview {
+    margin: 0;
+    font-size: 12px;
+    color: #4c5b52;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.btn-eliminar {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: auto;
+}
+
+.btn-eliminar:hover {
+    background: #c82333;
+}
+
+/* Botón cerrar sesión */
+.logout-section {
+    display: grid;
+    place-items: center;
+    margin-top: 28px;
+}
+
+.logout-section .btn-logout {
+    text-decoration: none;
+    background: var(--plum);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ===============================
+   Menú lateral
+   =============================== */
+
+/* Overlay */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Menú lateral */
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1998;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -400px;
+  width: 350px;
+  height: 100%;
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+  z-index: 1999;
+  transition: left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.menu-header {
+  background: linear-gradient(135deg, #6b4e6d, #4a2c4a);
+  color: white;
+  padding: 25px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-header h3 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.close-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.close-menu:hover {
+  transform: scale(1.1);
+}
+
+.menu-content {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.menu-section {
+  margin-bottom: 30px;
+}
+
+.menu-section-title {
+  color: #4a2c4a;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #BEE5BF;
+}
+
+.menu-categories {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-categories li {
+  margin-bottom: 8px;
+}
+
+.menu-categories a {
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  color: #4a2c4a;
+  text-decoration: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.menu-categories a:hover {
+  background: #BEE5BF;
+  color: #4a2c4a;
+  transform: translateX(5px);
+}
+
+.menu-categories i {
+  margin-right: 12px;
+  font-size: 1.1rem;
+  width: 20px;
+  text-align: center;
+}
+
+.menu-footer {
+  padding: 20px;
+  border-top: 1px solid #e0e0e0;
+  background: #f8f9fa;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.btn-login {
+    background: var(--plum);
+    color: var(--white);
+}
+
+.btn-login:hover {
+    background: var(--plum-2);
+}
+
+.btn-register {
+    background: var(--white);
+    color: var(--plum);
+    border: 2px solid var(--plum);
+}
+
+.btn-register:hover {
+    background: var(--mint-strong);
+}
+
+/* Scroll interno del menú */
+.side-menu::-webkit-scrollbar {
+    width: 6px;
+}
+
+.side-menu::-webkit-scrollbar-thumb {
+    background: var(--plum-2);
+    border-radius: 3px;
+}
+
+/* ===============================
+   Responsive
+   =============================== */
+@media (max-width: 900px) {
+    .saved-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 520px) {
+    .saved-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    .side-menu {
+        width: 220px;
+    }
+}
